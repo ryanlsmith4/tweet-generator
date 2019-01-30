@@ -8,7 +8,7 @@ def get_word_list():
     Retrieve words from a txt file or dictionary
     '''
     word_list = []
-    f = open('words.txt', 'r')
+    f = open('/usr/share/dict/words', 'r')
     for line in f:
         word_list.append(line.rstrip('\n'))
     # print(word_list)
