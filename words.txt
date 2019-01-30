@@ -1,0 +1,10 @@
+this
+file
+is
+a
+test
+to
+read
+files
+with
+s/o
