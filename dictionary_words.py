@@ -11,6 +11,7 @@ def get_word_list():
     f = open('/usr/share/dict/words', 'r')
     for line in f:
         word_list.append(line.rstrip('\n'))
+    f.close()
     # print(word_list)
     return(word_list)
 
