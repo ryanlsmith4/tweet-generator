@@ -29,7 +29,7 @@ def get_word_list(file_name = 'this.txt'):
         split_line = line.strip().split(" ")
         for word in split_line:
             if(word.lower() != ""):
-                words.append(word.strip("(),!."))
+                words.append(word.lower().strip("(),!."))
     print(words)
 
     return words
@@ -64,7 +64,7 @@ def lists_of_list(dictionary):
         # print(item, dictionary[item])
         entry = [item, dictionary[item]]
         l_a_l.append(entry)
-        print(l_a_l)
+    print(l_a_l)
 
 
 
@@ -73,7 +73,7 @@ def lists_of_list(dictionary):
 
 if __name__ =='__main__':
     # get_word_list()
-    # frequency('Communists',histogram(get_word_list()))
+    frequency('communists',histogram(get_word_list()))
     # histogram(get_word_list())
-    tuple_dict(histogram(get_word_list()))
+    # tuple_dict(histogram(get_word_list()))
     # lists_of_list(histogram(get_word_list()))
