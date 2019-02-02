@@ -29,7 +29,7 @@ def get_word_list(file_name = 'this.txt'):
         split_line = line.strip().split(" ")
         for word in split_line:
             if(word.lower() != ""):
-                words.append(word.lower().strip("(),!."))
+                words.append(word.lower().strip("(),!."""))
     print(words)
 
     return words
