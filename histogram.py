@@ -1,23 +1,5 @@
 from collections import Counter
 import string
-# def get_word_list():
-#     '''
-#     Retrieve words from a txt file or dictionary
-#     '''
-#     word_list = []
-#     new_list = []
-#     f = open('this.txt')
-#     book = f.read()
-#     # translator = str.maketrans('', '', string.punctuation)
-#     book = book.lower()
-#     # wordsFromText = (f.translate(translator)).split()
-#     f.close()
-#     for line in book:
-#         word_list.append(line)
-#         for word in word_list:
-#             new_list.extend(word.split(' '))
-#     print(new_list)
-#     return(new_list)
 
 def get_word_list(file_name = 'this.txt'):
     '''Loads words from a file and cleans text of most special characters'''
