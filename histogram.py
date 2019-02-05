@@ -1,6 +1,9 @@
 from collections import Counter
 import string
 
+words = ['one', 'fish', 'two', 'fish', 'red', 'fish', 'blue', 'fish']
+
+
 def get_word_list(file_name = 'this.txt'):
     '''Loads words from a file and cleans text of most special characters'''
     file = open(file_name,'r')
@@ -30,23 +33,54 @@ def histogram(list):
     # print(dict)
     return(dict)
 
-def frequency(word, dictionary):
-        print(word, dictionary[word])
+def frequency(choice):
+    count = 0
+    for word in get_word_list():
+        if word == choice:
+            count += 1
+    print(count)
+    return(count)
 
-def tuple_dict(dictionary):
-    tup_list = []
-    for item in dictionary:
-        entry = (item, dictionary[item])
-        tup_list.append(entry)
-    print(tup_list)
+def count(list):
+    count = 0
+    for word in list:
+        if word == word:
+            count += 1
+    print(count)
+    return(count)
 
-def lists_of_list(dictionary):
-    l_a_l = []
-    for item in dictionary:
-        # print(item, dictionary[item])
-        entry = [item, dictionary[item]]
-        l_a_l.append(entry)
-    print(l_a_l)
+def list_of_tuples(list):
+    l_t = []
+    inner_tuple = ()
+    for word in list:
+        found = False
+        for inner_tuple in l_t:
+            if word == inner_tuple[0]:
+                count = inner_tuple[1] + 1
+                l_t.remove(inner_tuple)
+                l_t.append((word, count))
+                found = True
+                break
+        if not found:
+            l_t.append(((word, 1)))
+    return(l_t)
+    print(l_t)
+
+
+def lists_of_list(list):
+    l_o_l = []
+    inner_list = []
+    for word in list:
+        found = False
+        for inner_list in l_o_l:
+            if word == inner_list[0]:
+                found = True
+                inner_list[1] += 1
+                break
+        if not found:
+            l_o_l.append([word, 1])
+    print(l_o_l)
+
 
 
 
@@ -54,8 +88,8 @@ def lists_of_list(dictionary):
 
 
 if __name__ =='__main__':
-    # get_word_list()
-    frequency('crime',histogram(get_word_list()))
+    # print(get_word_list())
+    # frequency('a')
     # histogram(get_word_list())
-    # tuple_dict(histogram(get_word_list()))
-    # lists_of_list(histogram(get_word_list()))
+    # list_of_tuples(words)
+    lists_of_list(words)
