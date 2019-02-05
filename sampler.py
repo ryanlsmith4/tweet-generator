@@ -1,21 +1,9 @@
+from histogram import get_word_list
+from histogram import lists_of_list
 import random
 
 words = ['one', 'fish', 'two', 'fish', 'red', 'fish', 'blue', 'fish']
 
-def get_word_list(file_name = 'this.txt'):
-    '''Loads words from a file and cleans text of most special characters'''
-    file = open(file_name,'r')
-    read_words = file.readlines()
-    file.close()
-    words = list()
-    for line in read_words:
-        split_line = line.strip().split(" ")
-        for word in split_line:
-            if(word.lower() != ""):
-                words.append(word.lower().strip("(),!.;"""))
-    # print(words)
-
-    return words
 
 def histogram(list):
     '''
@@ -31,11 +19,15 @@ def histogram(list):
     # print(dict)
     return(dict)
 
-def test_sample(list = words):
+def test_sample():
     temp = []
     freq = {}
-    for i in range(0, 10000):
-        temp.append(sample(hist))
+    # manifesto = get_word_list()
+    lol = lists_of_list(words)
+
+    for i in range(0, 1000):
+        temp.append(sample(lol))
+
     for word in temp:
         if word not in freq:
             freq[word] = 1
@@ -44,19 +36,19 @@ def test_sample(list = words):
     for key, value in freq.items():
         print(key,format(value/len(temp), '.4f'))
 
-def sample(dict):
-    index = random.randint(0, len(dict)-1)
-    return dict[index]
+def sample(list_of_list):
+    weight = 0
+    cum_prob = 0.0
+    for word_count in list_of_list:
+        weight += word_count[1]
+
+    rand_num = random.uniform(0,1)
+    for word_count in list_of_list:
+        cum_prob += word_count[1]/weight
+        if cum_prob >= rand_num:
+            # print(word_count[0])
+            return word_count[0]
+
 
 if __name__ == '__main__':
-    # count = 0
-    # for i in range(0, 100):
-    #     if i == i:
-    #         count += 1
-        # print(sample(get_word_list()))
-        # print(sample(words))
-        # histogram(get_word_list())
-        test_sample()
-        # test_sample(get_word_list())
-        # percent(get_word_list())
-        # print(count)
+    test_sample()

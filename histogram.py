@@ -79,7 +79,7 @@ def lists_of_list(list):
                 break
         if not found:
             l_o_l.append([word, 1])
-    print(l_o_l)
+    return(l_o_l)
 
 
 
