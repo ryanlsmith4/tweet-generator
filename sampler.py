@@ -22,11 +22,12 @@ def histogram(list):
 def test_sample():
     temp = []
     freq = {}
-    # manifesto = get_word_list()
-    lol = lists_of_list(words)
+    manifesto = get_word_list()
+    lol = lists_of_list(manifesto)
 
     for i in range(0, 1000):
         temp.append(sample(lol))
+        # temp.append(sample(manifesto))
 
     for word in temp:
         if word not in freq:
