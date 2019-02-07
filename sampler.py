@@ -4,21 +4,6 @@ import random
 
 words = ['one', 'fish', 'two', 'fish', 'red', 'fish', 'blue', 'fish']
 
-
-def histogram(list):
-    '''
-    Dictionary function that returns unique values with
-    number of reacurrences
-    '''
-    dict = {}
-    for word in list:
-        if word not in dict:
-            dict[word] = 1
-        else:
-            dict[word] += 1
-    # print(dict)
-    return(dict)
-
 def test_sample():
     temp = []
     freq = {}
@@ -27,7 +12,6 @@ def test_sample():
 
     for i in range(0, 1000):
         temp.append(sample(lol))
-        # temp.append(sample(manifesto))
 
     for word in temp:
         if word not in freq:
