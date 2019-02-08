@@ -1,5 +1,4 @@
 #!/Users/ryansmith/Documents/dev/CS/tweet-generator/venv/bin/python2.7
-
 # -*- coding: utf-8 -*-
 import re
 import sys
