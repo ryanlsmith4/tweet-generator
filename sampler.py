@@ -20,8 +20,8 @@ def test_sample():
         else:
             freq[word] += 1
     for key, value in freq.items():
-        return freq
-        # return(key,format(value/len(temp_word_list), '.4f'))
+        # return freq
+        return(key,format(value/len(temp_word_list), '.4f'))
 
 def sample(list_of_list):
     ''' Function to take in a list of list and return a random value
