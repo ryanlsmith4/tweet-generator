@@ -19,7 +19,7 @@ class Dictogram(dict):
                 self.add_count(word)
 
     def add_count(self, word, count=1):
-        """Adds the token count  to value in dicto
+        """Adds the token count to value in dicto
             and adds to the type count while incrementing the values
         """
         self.tokens += count
