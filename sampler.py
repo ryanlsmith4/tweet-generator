@@ -16,8 +16,8 @@ def test_sample():
         temp_word_list.append(select_word)
     frequency_hist = histogram(temp_word_list)
 
-    print(' '.join(temp_word_list))
-    return frequency_hist
+    return(' '.join(temp_word_list))
+    # return frequency_hist
 
 
 
