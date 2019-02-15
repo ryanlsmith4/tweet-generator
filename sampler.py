@@ -20,14 +20,6 @@ def test_sample():
     # return frequency_hist
 
 
-
-    # for word in temp_word_list:
-    #     if word not in freq:
-    #         freq[word] = 1
-    #     else:
-    #         freq[word] += 1
-
-
 def sample(list_of_list):
     ''' Function to take in a list of list and return a random value
         based on weight'''
@@ -47,6 +39,21 @@ def sample(list_of_list):
             # print(inner_list[0])
             # print('Weighted word {}'.format(inner_list[0]))
             return inner_list[0]
+
+def sample_dict(dict):
+    """Takes in a histogram and generates a random word with weighted probability"""
+    random_choice = random.randint(1, sum(dict.values()))
+    weights_sum = 0
+    # print(random_choice)
+
+    for key in dict:
+        weights_sum += dict[key]
+
+        if random_choice <= weights_sum:
+            return key
+            exit
+
+
 
 
 if __name__ == '__main__':
