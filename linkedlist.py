@@ -70,11 +70,16 @@ class LinkedList(object):
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Create new node to hold given item
         new_node = Node(item)
+        if self.length() == 0:
+            self.head = new_node
+            self.tail = new_node
+            return self
+        else:
         # TODO: Append node after tail, if it exists
-        self.tail.next = new_node
-        self.tail = new_node
-        # print(self)
-        return self
+            self.tail.next = new_node
+            self.tail = new_node
+            # print(self)
+            return self
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
@@ -121,60 +126,60 @@ class LinkedList(object):
                 node = node.next
 
 
-n1 = Node('Ryan')
-n2 = Node('Drew')
-n3 = Node('Mark')
-ll = LinkedList()
-ll.head = n1
-ll.tail = n3
-n1.next = n2
-n2.next = n3
+# n1 = Node('Ryan')
+# n2 = Node('Drew')
+# n3 = Node('Mark')
+# ll = LinkedList()
+# ll.head = n1
+# ll.tail = n3
+# n1.next = n2
+# n2.next = n3
+#
+# print("first LinkedList: ".format(ll))
+#
+# print(ll)
+# ll.append('W')
+# ll.append(word)
+# ll.prepend('this')
+#
+#
+# # ll.length()
+# # print("Second LinkedList: ".format(ll))
+# print(ll)
+#
+# # ll.find('nothing')
+# print('delete')
+# ll.delete('Mark')
+# print(ll)
+#
+# #
+def test_linked_list():
+    ll = LinkedList()
+    print('list: {}'.format(ll))
 
-print("first LinkedList: ".format(ll))
+    print('\nTesting append:')
+    for item in ['A', 'B', 'C']:
+        print('append({!r})'.format(item))
+        ll.append(item)
+        print('list: {}'.format(ll))
 
-print(ll)
-ll.append('W')
-ll.append(word)
-ll.prepend('this')
+    print('head: {}'.format(ll.head))
+    print('tail: {}'.format(ll.tail))
+    print('length: {}'.format(ll.length()))
+
+    # Enable this after implementing delete method
+    delete_implemented = False
+    if delete_implemented:
+        print('\nTesting delete:')
+        for item in ['B', 'C', 'A']:
+            print('delete({!r})'.format(item))
+            ll.delete(item)
+            print('list: {}'.format(ll))
+
+        print('head: {}'.format(ll.head))
+        print('tail: {}'.format(ll.tail))
+        print('length: {}'.format(ll.length()))
 
 
-# ll.length()
-# print("Second LinkedList: ".format(ll))
-print(ll)
-
-# ll.find('nothing')
-print('delete')
-ll.delete('Mark')
-print(ll)
-
-#
-# def test_linked_list():
-#     ll = LinkedList()
-#     print('list: {}'.format(ll))
-#
-#     print('\nTesting append:')
-#     for item in ['A', 'B', 'C']:
-#         print('append({!r})'.format(item))
-#         ll.append(item)
-#         print('list: {}'.format(ll))
-#
-#     print('head: {}'.format(ll.head))
-#     print('tail: {}'.format(ll.tail))
-#     print('length: {}'.format(ll.length()))
-#
-#     # Enable this after implementing delete method
-#     delete_implemented = False
-#     if delete_implemented:
-#         print('\nTesting delete:')
-#         for item in ['B', 'C', 'A']:
-#             print('delete({!r})'.format(item))
-#             ll.delete(item)
-#             print('list: {}'.format(ll))
-#
-#         print('head: {}'.format(ll.head))
-#         print('tail: {}'.format(ll.tail))
-#         print('length: {}'.format(ll.length()))
-#
-#
-# if __name__ == '__main__':
-#     test_linked_list()
+if __name__ == '__main__':
+    test_linked_list()
