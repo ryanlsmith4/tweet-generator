@@ -86,8 +86,13 @@ class LinkedList(object):
         # TODO: Create new node to hold given item
         new_node = Node(item)
         # TODO: Prepend node before head, if it exists
-        new_node.next = self.head
-        self.head = new_node
+        if self.length() == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
+
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
