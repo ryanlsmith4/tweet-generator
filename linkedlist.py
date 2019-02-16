@@ -1,5 +1,4 @@
 #!python
-word = ['one', "two", 'three']
 
 class Node(object):
 
@@ -89,7 +88,6 @@ class LinkedList(object):
         # TODO: Prepend node before head, if it exists
         new_node.next = self.head
         self.head = new_node
-        return self
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
@@ -99,87 +97,94 @@ class LinkedList(object):
         node = self.head
         while node is not None:
             if node.data == quality:
-                # print('FOUND')
+                print('Found')
                 return node
             else:
                 node = node.next
         print('Not Found')
+        return None
         # TODO: Check if node's data satisfies given quality function
-
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
         TODO: Best case running time: O(???) Why and under what conditions?
         TODO: Worst case running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all nodes to find one whose data matches given item
         target = self.find(item)
         if target == None:
             raise ValueError('Item not found: {}'.format(item))
         next_node = target.next
         node = self.head
-        while node is not None:
-            if node.next == target:
-                prev_node = node
-                node.next = next_node
-                found = False
-            else:
-                node = node.next
+        if target == node:
+            self.head = target.next
+            node.next = None
+        else:
+            while node is not None:
+                if node.next == target:
+                    if node.next == self.tail:
+                        self.tail = node
+                    node.next = next_node
+                else:
+                    node = node.next
 
 
-# n1 = Node('Ryan')
-# n2 = Node('Drew')
-# n3 = Node('Mark')
-# ll = LinkedList()
-# ll.head = n1
-# ll.tail = n3
-# n1.next = n2
-# n2.next = n3
-#
-# print("first LinkedList: ".format(ll))
-#
-# print(ll)
-# ll.append('W')
-# ll.append(word)
+
+n1 = Node('Ryan')
+n2 = Node('Drew')
+n3 = Node('Mark')
+ll = LinkedList()
+ll.head = n1
+ll.tail = n3
+n1.next = n2
+n2.next = n3
+
+print("first LinkedList: ".format(ll))
+
+print(ll)
+ll.append('W')
+ll.append('thisData')
 # ll.prepend('this')
+
+print(ll)
+
+
+print('delete')
+ll.delete('Ryan')
+print('this next')
+print(n1.next)
+print('HeAD')
+print(ll.head)
+print('tail')
+print(ll.tail)
+print(ll)
+
+
+# def test_linked_list():
+#     ll = LinkedList()
+#     print('list: {}'.format(ll))
+#
+#     print('\nTesting append:')
+#     for item in ['A', 'B', 'C']:
+#         print('append({!r})'.format(item))
+#         ll.append(item)
+#         print('list: {}'.format(ll))
+#
+#     print('head: {}'.format(ll.head))
+#     print('tail: {}'.format(ll.tail))
+#     print('length: {}'.format(ll.length()))
+#
+#     # Enable this after implementing delete method
+#     delete_implemented = False
+#     if delete_implemented:
+#         print('\nTesting delete:')
+#         for item in ['B', 'C', 'A']:
+#             print('delete({!r})'.format(item))
+#             ll.delete(item)
+#             print('list: {}'.format(ll))
+#
+#         print('head: {}'.format(ll.head))
+#         print('tail: {}'.format(ll.tail))
+#         print('length: {}'.format(ll.length()))
 #
 #
-# # ll.length()
-# # print("Second LinkedList: ".format(ll))
-# print(ll)
-#
-# # ll.find('nothing')
-# print('delete')
-# ll.delete('Mark')
-# print(ll)
-#
-# #
-def test_linked_list():
-    ll = LinkedList()
-    print('list: {}'.format(ll))
-
-    print('\nTesting append:')
-    for item in ['A', 'B', 'C']:
-        print('append({!r})'.format(item))
-        ll.append(item)
-        print('list: {}'.format(ll))
-
-    print('head: {}'.format(ll.head))
-    print('tail: {}'.format(ll.tail))
-    print('length: {}'.format(ll.length()))
-
-    # Enable this after implementing delete method
-    delete_implemented = False
-    if delete_implemented:
-        print('\nTesting delete:')
-        for item in ['B', 'C', 'A']:
-            print('delete({!r})'.format(item))
-            ll.delete(item)
-            print('list: {}'.format(ll))
-
-        print('head: {}'.format(ll.head))
-        print('tail: {}'.format(ll.tail))
-        print('length: {}'.format(ll.length()))
-
-
-if __name__ == '__main__':
-    test_linked_list()
+# if __name__ == '__main__':
+#     test_linked_list()
