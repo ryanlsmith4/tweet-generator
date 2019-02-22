@@ -18,6 +18,7 @@ class LinkedList(object):
         """Initialize this linked list and append the given items, if any."""
         self.head = None  # First node
         self.tail = None  # Last node
+        self.size = 0   # Length attribute
         # Append given items
         if items is not None:
             for item in items:
@@ -55,13 +56,7 @@ class LinkedList(object):
         """Return the length of this linked list by traversing its nodes.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes and count one for each
-        count = 0
-        node = self.head
-        while node is not None:
-            node = node.next
-            count += 1
-        print(count)
-        return count
+        return self.size
 
 
     def append(self, item):
@@ -69,14 +64,15 @@ class LinkedList(object):
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Create new node to hold given item
         new_node = Node(item)
-        if self.length() == 0:
+        if self.size == 0:
             self.head = new_node
             self.tail = new_node
+            self.size += 1
             return self
         else:
-        # TODO: Append node after tail, if it exists
             self.tail.next = new_node
             self.tail = new_node
+            self.size += 1
             # print(self)
             return self
 
@@ -89,9 +85,11 @@ class LinkedList(object):
         if self.length() == 0:
             self.head = new_node
             self.tail = new_node
+            self.size += 1
         else:
             new_node.next = self.head
             self.head = new_node
+            self.size += 1
 
 
     def find(self, quality):
@@ -101,95 +99,79 @@ class LinkedList(object):
         # TODO: Loop through all nodes to find item where quality(item) is True
         node = self.head
         while node is not None:
-            if node.data == quality:
-                print('Found')
-                return node
+            if quality(node.data):
+                return node.data
             else:
                 node = node.next
-        print('Not Found')
         return None
-        # TODO: Check if node's data satisfies given quality function
 
-    def delete(self, item):
+    def delete(self, item): # Credit to Xisouyang for helping me with this function!
         """Delete the given item from this linked list, or raise ValueError.
         TODO: Best case running time: O(???) Why and under what conditions?
         TODO: Worst case running time: O(???) Why and under what conditions?"""
-        target = self.find(item)
-        if target == None:
-            raise ValueError('Item not found: {}'.format(item))
-        next_node = target.next
-        node = self.head
-        if target == node:
-            self.head = target.next
-            node.next = None
-        else:
-            while node is not None:
-                if node.next == target:
-                    if node.next == self.tail:
-                        self.tail = node
-                    node.next = next_node
+        if self.is_empty():
+            raise ValueError("LinkedList is Empty")
+
+        if self.size == 1:
+            self.head = None
+            self.tail = None
+            self.size -= 1
+            return True
+
+        current_node = self.head
+        prev_node = None
+
+        while current_node:
+            if current_node.data == item:
+                if current_node == self.tail:
+                    prev_node.next = None
+                    self.tail = prev_node
+                    self.size -= 1
+                    return
+                if prev_node:
+                    prev_node.next = current_node.next
+                    self.size -= 1
                 else:
-                    node = node.next
+                    self.head = current_node.next
+                    self.size -= 1
+                return
+
+            else:
+                prev_node = current_node
+                current_node = current_node.next
+
+        raise ValueError('Item not found: {}'.format(item))
 
 
 
-n1 = Node('Ryan')
-n2 = Node('Drew')
-n3 = Node('Mark')
-ll = LinkedList()
-ll.head = n1
-ll.tail = n3
-n1.next = n2
-n2.next = n3
+def test_linked_list():
+    ll = LinkedList()
+    print('list: {}'.format(ll))
 
-print("first LinkedList: ".format(ll))
+    print('\nTesting append:')
+    for item in ['A', 'B', 'C']:
+        print('append({!r})'.format(item))
+        ll.append(item)
+        print('list: {}'.format(ll))
 
-print(ll)
-ll.append('W')
-ll.append('thisData')
-# ll.prepend('this')
+    print('head: {}'.format(ll.head))
+    print('tail: {}'.format(ll.tail))
+    print(ll.length())
+    print('length: {}'.format(ll.length()))
 
-print(ll)
+    # Enable this after implementing delete method
+    delete_implemented = True
+    if delete_implemented:
+        print('\nTesting delete:')
+        for item in ['B', 'C', 'A']:
+            print('delete({!r})'.format(item))
+            ll.delete(item)
+            print('list: {}'.format(ll))
+
+        print('head: {}'.format(ll.head))
+        print('tail: {}'.format(ll.tail))
+        print('length: {}'.format(ll.length()))
 
 
-print('delete')
-ll.delete('Ryan')
-print('this next')
-print(n1.next)
-print('HeAD')
-print(ll.head)
-print('tail')
-print(ll.tail)
-print(ll)
-
-
-# def test_linked_list():
-#     ll = LinkedList()
-#     print('list: {}'.format(ll))
-#
-#     print('\nTesting append:')
-#     for item in ['A', 'B', 'C']:
-#         print('append({!r})'.format(item))
-#         ll.append(item)
-#         print('list: {}'.format(ll))
-#
-#     print('head: {}'.format(ll.head))
-#     print('tail: {}'.format(ll.tail))
-#     print('length: {}'.format(ll.length()))
-#
-#     # Enable this after implementing delete method
-#     delete_implemented = False
-#     if delete_implemented:
-#         print('\nTesting delete:')
-#         for item in ['B', 'C', 'A']:
-#             print('delete({!r})'.format(item))
-#             ll.delete(item)
-#             print('list: {}'.format(ll))
-#
-#         print('head: {}'.format(ll.head))
-#         print('tail: {}'.format(ll.tail))
-#         print('length: {}'.format(ll.length()))
-#
-#
-# if __name__ == '__main__':
-#     test_linked_list()
+if __name__ == '__main__':
+    test_linked_list()
