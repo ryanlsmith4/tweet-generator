@@ -37,9 +37,12 @@ class HashTable(object):
     def values(self):
         """Return a list of all values in this hash table.
         TODO: Running time: O(???) Why and under what conditions?"""
+        all_values = []
         # TODO: Loop through all buckets
-
-        # TODO: Collect all values in each bucket
+        for bucket in self.buckets:
+            for key, value in bucket.items():
+                all_values.append(value)
+        return all_values
 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
@@ -53,14 +56,27 @@ class HashTable(object):
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all buckets
-        # TODO: Count number of key-value entries in each bucket
+        size = 0
+        # Loop through all buckets
+        for bucket in self.buckets:
+        # Count number of key-value entries in each bucket
+            size += bucket.size
+        return size
+
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Find bucket where given key belongs
-        # TODO: Check if key-value entry exists in bucket
+        # Find bucket where given key belongs
+        index = self._bucket_index(key)
+        bucket = self.buckets[index]
+        entry = bucket.find(lambda key_value: key_value[0])
+        # Check if key-value entry exists in bucket
+        if entry is not None:
+            return True
+        else:
+            return False
+
 
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
@@ -80,27 +96,35 @@ class HashTable(object):
     def set(self, key, value):
         """Insert or update the given key with its associated value.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Find bucket where given key belongs
+        # Find bucket where given key belongs
         index = self._bucket_index(key)
         bucket = self.buckets[index]
-        entry = bucket.find(lamda key_value[0] == key)
-        # TODO: Check if key-value entry exists in bucket
-        if entry :
-
-        # TODO: If found, update value associated with given key
-        # TODO: Otherwise, insert given key-value entry into bucket
-
+        entry = bucket.find(lambda key_value: key_value[0] == key)
+        # Check if key-value entry exists in bucket
+        if entry is not None:
+        # If found, update value associated with given key
+            bucket.delete(entry)
+        # Otherwise, insert given key-value entry into bucket
+        entry = (key, value)
         bucket.append(entry)
 
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Find bucket where given key belongs
-        # TODO: Check if key-value entry exists in bucket
+        # Find bucket where given key belongs
+        index = self._bucket_index(key)
+        bucket = self.buckets[index]
+        entry = bucket.find(lambda key_value: key_value[0] == key)
+        #  Check if key-value entry exists in bucket
+        if entry is not None:
+            bucket.delete(entry)
         # TODO: If found, delete entry associated with given key
-        # TODO: Otherwise, raise error to tell user delete failed
-        # Hint: raise KeyError('Key not found: {}'.format(key))
+        else:
+        # Otherwise, raise error to tell user delete failed
+            raise KeyError('Key not found: {}'.format(key))
+
+
 
 
 def test_hash_table():
@@ -108,7 +132,7 @@ def test_hash_table():
     print('hash table: {}'.format(ht))
 
     print('\nTesting set:')
-    for key, value in [('I', 1), ('V', 5), ('X', 10)]:
+    for key, value in [('I', 1), ('V', 5), ('X', 10), ('X', 12), ('G', 33)]:
         print('set({!r}, {!r})'.format(key, value))
         ht.set(key, value)
         print('hash table: {}'.format(ht))
