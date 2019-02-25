@@ -38,6 +38,7 @@ class HashTable(object):
         """Return a list of all values in this hash table.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all buckets
+
         # TODO: Collect all values in each bucket
 
     def items(self):
@@ -65,18 +66,32 @@ class HashTable(object):
         """Return the value associated with the given key, or raise KeyError.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Find bucket where given key belongs
+        index = self._bucket_index(key)
+        bucket = self.buckets[index]
         # TODO: Check if key-value entry exists in bucket
+        entry = bucket.find(lambda key_value: key_value[0] == key)
         # TODO: If found, return value associated with given key
+        if entry is not None:
+            return entry[1]
         # TODO: Otherwise, raise error to tell user get failed
-        # Hint: raise KeyError('Key not found: {}'.format(key))
+        else:
+            raise KeyError('Key not found: {}'.format(key))
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Find bucket where given key belongs
+        index = self._bucket_index(key)
+        bucket = self.buckets[index]
+        entry = bucket.find(lamda key_value[0] == key)
         # TODO: Check if key-value entry exists in bucket
+        if entry :
+
         # TODO: If found, update value associated with given key
         # TODO: Otherwise, insert given key-value entry into bucket
+
+        bucket.append(entry)
+
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
