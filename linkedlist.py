@@ -50,19 +50,19 @@ class LinkedList(object):
 
     def is_empty(self):
         """Return a boolean indicating whether this linked list is empty."""
-        return self.head is None
+        return self.head is None # O(1)
 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all nodes and count one for each
-        return self.size
+        Running time: O(1) We just return a constant"""
+        # returns the size of the LinkedList
+        return self.size # O(1)
 
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Create new node to hold given item
+        Running time: O(1) Only change last node?"""
+        # Create new node to hold given item
         new_node = Node(item)
         if self.size == 0:
             self.head = new_node
@@ -78,25 +78,31 @@ class LinkedList(object):
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Create new node to hold given item
+        Running time: O(1) Because we only change the head node and never
+        loop through the whole list
+        """
+        # Create new node to hold given item
         new_node = Node(item)
-        # TODO: Prepend node before head, if it exists
+
         if self.size == 0:
             self.head = new_node
             self.tail = new_node
+            # add to size of list
             self.size += 1
+        # Prepend node before head, if it exists
         else:
             new_node.next = self.head
             self.head = new_node
+            # add to size of list
             self.size += 1
 
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
-        TODO: Best case running time: O(???) Why and under what conditions?
-        TODO: Worst case running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all nodes to find item where quality(item) is True
+        Best case running time: O(1) If the item is the head
+        Worst case running time: O(n) If it's anywhere else it
+        """
+        # Loop through all nodes to find item where quality(item) is True
         node = self.head
         while node is not None:
             if quality(node.data):
@@ -107,8 +113,8 @@ class LinkedList(object):
 
     def delete(self, item): # Credit to Xisouyang for helping me with this function!
         """Delete the given item from this linked list, or raise ValueError.
-        TODO: Best case running time: O(???) Why and under what conditions?
-        TODO: Worst case running time: O(???) Why and under what conditions?"""
+        TODO: Best case running time: O(n) If it's not the first item?
+        TODO: Worst case running time: O(1) If it's the first item?"""
         if self.is_empty():
             raise ValueError("LinkedList is Empty")
 
