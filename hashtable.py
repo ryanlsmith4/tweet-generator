@@ -38,9 +38,11 @@ class HashTable(object):
         """Return a list of all values in this hash table.
         Running time: O(n) Dependent on amount of buckets?"""
         all_values = []
-        # TODO: Loop through all buckets
+        # Loop through all buckets
         for bucket in self.buckets:
+            # Loop through key, value in all buckets
             for key, value in bucket.items():
+                # add value to bucket
                 all_values.append(value)
         return all_values
 
