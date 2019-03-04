@@ -26,6 +26,7 @@ class HashTable(object):
 
     def keys(self):
         """Return a list of all keys in this hash table.
+        n = Number of items in data structure
         Running time: O(n) Dependent on amount of buckets"""
         # Collect all keys in each bucket
         all_keys = []
@@ -82,45 +83,46 @@ class HashTable(object):
 
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
-        TRunning time: O(1) If entry exist"""
+        Running time: O(n) where n is the length of the specific bucket"""
         # Find bucket where given key belongs
         index = self._bucket_index(key)
         bucket = self.buckets[index]
         # Check if key-value entry exists in bucket
-        entry = bucket.find(lambda key_value: key_value[0] == key)
+        entry = bucket.find(lambda key_value: key_value[0] == key) # O(l) with l = bucket.length()
         # If found, return value associated with given key
-        if entry is not None:
-            return entry[1]
+        if entry is not None: # FOUND
+            return entry[1] # entry = (key,value)
         # Otherwise, raise error to tell user get failed
         else:
             raise KeyError('Key not found: {}'.format(key))
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
-        Running time: O(1)"""
+        Running time: Best condition O(1) worst condition O(l) which is actually
+        O(2l) but we drop constants in linear time"""
         # Find bucket where given key belongs
-        index = self._bucket_index(key)
-        bucket = self.buckets[index]
-        entry = bucket.find(lambda key_value: key_value[0] == key)
+        index = self._bucket_index(key) #O(1)
+        bucket = self.buckets[index] #O(1)
+        entry = bucket.find(lambda key_value: key_value[0] == key) # O(l)
         # Check if key-value entry exists in bucket
         if entry is not None:
         # If found, update value associated with given key
-            bucket.delete(entry)
+            bucket.delete(entry) # remove old key,value pair to append later
         # Otherwise, insert given key-value entry into bucket
-        entry = (key, value)
-        bucket.append(entry)
+        entry = (key, value) #O(1)
+        bucket.append(entry) #O(1)
 
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
-        Running time: O(1) """
+        Running time: O(l) Because dropping constants  """
         # Find bucket where given key belongs
         index = self._bucket_index(key)
         bucket = self.buckets[index]
-        entry = bucket.find(lambda key_value: key_value[0] == key)
+        entry = bucket.find(lambda key_value: key_value[0] == key) # O(l)
         #  Check if key-value entry exists in bucket
         if entry is not None:
-            bucket.delete(entry)
+            bucket.delete(entry) # O(l)
         # If found, delete entry associated with given key
         else:
         # Otherwise, raise error to tell user delete failed
