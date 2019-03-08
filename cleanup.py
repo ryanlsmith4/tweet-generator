@@ -1,6 +1,6 @@
 import sys
 
-def get_word_list(file_name = 'this.txt'):
+def get_word_list(file_name = 'corpus.txt'):
     '''Loads words from a file and cleans text of most special characters'''
     with open(file_name,'r') as f:
         read_words = f.readlines()
@@ -10,6 +10,7 @@ def get_word_list(file_name = 'this.txt'):
             for word in split_line:
                 if(word.lower() != ""):
                     words.append(word.lower().strip("(),!."";:,"))
+        # print(words)
         return words
 
 

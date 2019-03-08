@@ -1,0 +1,93 @@
+The Project Gutenberg EBook of Hitchhiker's Guide to the Internet, by Ed Krol
+
+This eBook is for the use of anyone anywhere at no cost and with
+almost no restrictions whatsoever.  You may copy it, give it away or
+re-use it under the terms of the Project Gutenberg License included
+with this eBook or online at www.gutenberg.org
+
+** This is a COPYRIGHTED Project Gutenberg eBook, Details Below **
+**     Please follow the copyright guidelines in this file.     **
+
+Title: Hitchhiker's Guide to the Internet
+
+Author: Ed Krol
+
+Posting Date: December 17, 2011 [EBook #39]
+Release Date: September, 1992
+
+Language: English
+
+
+*** START OF THIS PROJECT GUTENBERG EBOOK HITCHHIKER'S GUIDE TO THE INTERNET ***
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            The Hitchhikers Guide to the Internet
+                        25 August 1987
+
+
+
+                           Ed Krol
+                    krol@uxc.cso.uiuc.edu
+
+
+
+
+ This document was produced through funding of the National
+ Science Foundation.
+
+ Copyright (C) 1987, by the Board of Trustees of The University
+ of Illinois.  Permission to duplicate this document, in whole
+ or part, is granted provided reference is made to the source
+ and this copyright is included in whole copies.
+
+
+ This document assumes that one is familiar with the workings
+ of a non-connected simple IP network (e.g. a few 4.2 BSD
+ systems on an Ethernet not connected to anywhere else).
+ Appendix A contains remedial information to get one to this
+ point.  Its purpose is to get that person, familiar with a
+ simple net, versed in the "oral tradition" of the Internet
+ to the point that that net can be connected to the Internet
+ with little danger to either.  It is not a tutorial, it
+ consists of pointers to other places, literature, and hints
+ which are not normally documented.  Since the Internet is a
+ dynamic environment, changes to this document will be made
+ regularly.  The author welcomes comments and suggestions.
+ This is especially true of terms for the glossary (definitions
+ are not necessary).
+
+
+
+
+ In the beginning there was the ARPAnet, a wide area
+ experimental network connecting hosts and terminal servers
+ together.  Procedures were set up to regulate the allocation
+ of addresses and to create voluntary standards for the network.
+ As local area networks became more pervasive, many hosts became
+ gateways to local networks.  A network layer to allow the
+ interoperation of these networks was developed and called IP
+ (Internet Protocol).  Over time other groups created long haul
+ IP based networks (NASA, NSF, states...).  These nets, too,
+ interoperate because of IP.  The collection of all of these
+ interoperating networks is the Internet.
+
+ Two groups do much of the research and information work of
+ the Internet (ISI and SRI).  ISI (the Informational Sciences
+ Institute) does much of the research, standardization, and
+ allocation work of the Internet.  SRI International provides
+ information services for the Internet.  In fact, after you
+ are connected to the Internet most of the information in
+ this document can be retrieved from the Network Information
+ Center (NIC) run by SRI.

@@ -2,6 +2,12 @@
 
 from linkedlist import LinkedList
 
+# n = # of key-value entries
+# b = # of buckets
+#     # entries     n
+#  l =  ------- = -----
+#     # buckets     b
+
 
 class HashTable(object):
 
@@ -49,7 +55,7 @@ class HashTable(object):
 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
-        TODO: Running time: O(n) Dependent on amount of buckets"""
+        Running time: O(n) Dependent on amount of buckets"""
         # Collect all pairs of key-value entries in each bucket
         all_items = []
         for bucket in self.buckets:
@@ -61,10 +67,11 @@ class HashTable(object):
         Running time: O(n) Dependent on amount of buckets"""
         size = 0
         # Loop through all buckets
-        for bucket in self.buckets:
+        for bucket in self.buckets: # b # of buckets
         # Count number of key-value entries in each bucket
-            size += bucket.size
+            size += bucket.size # O(l)
         return size
+        # Overall O(b * l) ---> O(n)
 
 
     def contains(self, key):
@@ -117,8 +124,9 @@ class HashTable(object):
         """Delete the given key from this hash table, or raise KeyError.
         Running time: O(l) Because dropping constants  """
         # Find bucket where given key belongs
-        index = self._bucket_index(key)
-        bucket = self.buckets[index]
+        index = self._bucket_index(key) # O(1)
+        bucket = self.buckets[index] # O(1)
+        # entry is a tuple found using linkedList method find
         entry = bucket.find(lambda key_value: key_value[0] == key) # O(l)
         #  Check if key-value entry exists in bucket
         if entry is not None:

@@ -49,7 +49,8 @@ class LinkedList(object):
         return items  # O(1) time to return list
 
     def is_empty(self):
-        """Return a boolean indicating whether this linked list is empty."""
+        """Return a boolean indicating whether this linked list is empty.
+        Runtime is O(1)"""
         return self.head is None # O(1)
 
     def length(self):

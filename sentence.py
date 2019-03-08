@@ -10,40 +10,37 @@ def dict_of_hist_entry(select_word, word_list):
         if select_word == word_list[index]:
             words_after_list.append(word_list[index + 1])
     select_word_hist = Dictogram(words_after_list)
+    # print(select_word_hist)
     return(select_word_hist)
 
 def dict_of_hist(hist, word_list):
-    master_dict = {}
-    for word in hist:
-        entry = dict_of_hist_entry(word, word_list)
-        master_dict[word] = entry
-    return master_dict
+    new_sentence = []
+    if len(new_sentence) == 0:
+        sample = sample_dict(hist)
+        new_sentence.append(sample)
+    # master_dict = {}
+    # for word in hist:
+    while len(new_sentence) < 15:
 
-def new_word(word_select, master_hist):
-    entry = master_dict[word_select]
-    sample = sample_dict(entry)
-    return sample
+        entry = dict_of_hist_entry(sample, word_list)
+        sample = sample_dict(entry)
+        new_sentence.append(sample)
 
-def  make_sentence(word_list, master_hist, sen_length = 10):
-    sentence = []
-    ran_word = random.randint(0, len(word_list) - 1)
-    word_select = word_list[ran_word]
-    for i in range(sen_length):
-        word = new_word(word_select, master_hist)
-        sentence.append(word)
-        word_select = word
-    print(*sentence)
-    return sentence
-
-
+        # master_dict[word] = entry
+    new_sentence[len(new_sentence) -1] = '.'
+    better_sentence = ' '.join(new_sentence)
+    print(better_sentence)
+    return better_sentence
 
 if __name__ =='__main__':
-    if len(sys.argv) == 2:
-        word_list = get_word_list(sys.argv[1])
-    else:
-        word_list = get_word_list()
+    # if len(sys.argv) == 2:
+    #     word_list = get_word_list(sys.argv[1])
+    # else:
+    word_list = get_word_list()
     histogram = Dictogram(word_list)
-    master_dict = dict_of_hist(histogram, word_list)
-    # var = dict_of_hist_entry('fish', word_list)
+    # master_dict = dict_of_hist(histogram, word_list)
+    # # var = dict_of_hist_entry('fish', word_list)
+    dict_of_hist(histogram, word_list)
     # print(master_dict)
-    make_sentence(word_list, master_dict, 20)
+    # make_sentence(word_list, master_dict)
+    # dict_of_hist_entry('king', word_list)
