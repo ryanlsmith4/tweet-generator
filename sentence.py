@@ -10,8 +10,8 @@ def dict_of_hist_entry(select_word, word_list):
         if select_word == word_list[index]:
             words_after_list.append(word_list[index + 1])
     select_word_hist = Dictogram(words_after_list)
-    print(select_word_hist)
-    # return(select_word_hist)
+    # print(select_word_hist)
+    return(select_word_hist)
 
 def gen_sentence(hist, word_list):
     new_sentence = []

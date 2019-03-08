@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, render_template
-from markov import gen_sentence
+from sentence import gen_sentence
 from dictogram import Dictogram
 from cleanup import get_word_list
 
