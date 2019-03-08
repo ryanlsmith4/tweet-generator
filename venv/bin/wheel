@@ -1,4 +1,4 @@
-#!/Users/ryansmith/Documents/dev/CS/tweet-generator/venv/bin/python2.7
+#!/Users/ryansmith/Documents/dev/CS/tweet-generator/venv/bin/python3.7
 
 # -*- coding: utf-8 -*-
 import re
