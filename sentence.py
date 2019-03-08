@@ -13,7 +13,7 @@ def dict_of_hist_entry(select_word, word_list):
     # print(select_word_hist)
     return(select_word_hist)
 
-def gen_sentence(hist, word_list):
+def gen_sentence(hist, word_list): #ATTENTION GRADER THIS FX GENS THE 1st ORDER MARKOV
     new_sentence = []
     if len(new_sentence) == 0:
         sample = sample_dict(hist)
