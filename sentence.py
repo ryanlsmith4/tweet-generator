@@ -13,7 +13,7 @@ def dict_of_hist_entry(select_word, word_list):
     # print(select_word_hist)
     return(select_word_hist)
 
-def dict_of_hist(hist, word_list):
+def gen_sentence(hist, word_list):
     new_sentence = []
     if len(new_sentence) == 0:
         sample = sample_dict(hist)
@@ -40,7 +40,7 @@ if __name__ =='__main__':
     histogram = Dictogram(word_list)
     # master_dict = dict_of_hist(histogram, word_list)
     # # var = dict_of_hist_entry('fish', word_list)
-    dict_of_hist(histogram, word_list)
+    gen_sentence(histogram, word_list)
     # print(master_dict)
     # make_sentence(word_list, master_dict)
     # dict_of_hist_entry('king', word_list)
